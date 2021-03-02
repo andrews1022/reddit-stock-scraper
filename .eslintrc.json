@@ -15,6 +15,7 @@
 		"no-console": "off",
 		"no-restricted-globals": "off",
 		"quotes": "warn",
+		"semi": "warn",
 		"spaced-comment": "off"
 	}
 }
