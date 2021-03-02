@@ -3,7 +3,7 @@
 /* eslint-disable operator-linebreak */
 
 const testingText =
-	'Lorem ipsum dolor sit amet, AAPL consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim $TSLA veniam, quis nostrud exercitation $BES ullamco laboris nisi ut aliquip ex ea commodo RTAGA consequat. Duis aute irure dolor in reprehenderit in T voluptate CM velit esse cillum dolore eu fugiat nulla pariatur. $TSLA Excepteur sint occaecat cupidatat TSLA non proident, $BB sunt in culpa qui officia deserunt mollit anim MSFT id est laborum AAPL';
+	'Lorem ipsum dolor sit amet, AAPL consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim $TSLA veniam, quis nostrud exercitation $BES ullamco laboris nisi ut aliquip ex ea commodo RTAGA consequat. Duis aute irure dolor in reprehenderit in T voluptate CM velit esse cillum dolore eu fugiat nulla pariatur. $TSLA Excepteur sint occaecat cupidatat TSLA non proident, $BB sunt in culpa qui officia deserunt mollit anim MSFT id est laborum AAPL.';
 
 // tickers that SHOULD be found:
 // AAPL, $BES, T, CM, $TSLA, $BB, MSFT
