@@ -1,50 +1,81 @@
-/* eslint-disable indent */
-/* eslint-disable no-tabs */
-/* eslint-disable operator-linebreak */
+import cheerio from 'cheerio';
+import fetch from 'node-fetch';
 
-const testingText =
-	'Lorem ipsum dolor sit amet, AAPL consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim $TSLA veniam, quis nostrud exercitation $BES ullamco laboris nisi ut aliquip ex ea commodo RTAGA consequat. Duis aute irure dolor in reprehenderit in T voluptate CM velit esse cillum dolore eu fugiat nulla pariatur. $TSLA Excepteur sint occaecat cupidatat TSLA non proident, $BB sunt in culpa qui officia deserunt mollit anim MSFT id est laborum AAPL.';
+const scrapeReddit = async (subreddit) => {
+	const BASE_URL = 'https://old.reddit.com';
+	let htmlToParse = '';
 
-// tickers that SHOULD be found:
-// AAPL, $BES, T, CM, $TSLA, $BB, MSFT
+	try {
+		const response = await fetch(`${BASE_URL}/r/${subreddit}/`);
+		const html = await response.text();
 
-// tickers that should NOT be found:
-// RTAGA
+		const $ = cheerio.load(html);
 
-// stock ticker regex:
-// start with $ symbol (optional)
-// followed by 1-4 letters, all uppercase
-// regex will return valid tickers WITHOUT $ sign
-// (finds them if included, but returns without)
-const stockTickerRegex = /\b\$?[A-Z]{1,4}\b/g;
+		// grab all hrefs
+		const hrefs = [];
+		$('.thing .entry .top-matter .title a.title').each((i, el) => {
+			hrefs[i] = $(el).attr('href');
+		});
 
-// get an array of all found tickers (includes duplicates)
-const tickers = testingText.match(stockTickerRegex);
+		// filter the hrefs
+		// only get hrefs that include the subreddit name
+		const filteredHrefs = hrefs.filter((href) => href.includes(`/r/${subreddit}`));
 
-// sort tickers alphabetically
-tickers.sort();
-// console.log('TICKERS: ', tickers);
+		const getPostHtml = async () => {
+			for (const href of filteredHrefs) {
+				try {
+					const postResponse = await fetch(`${BASE_URL}${href}`);
+					const postHTML = await postResponse.text();
+					htmlToParse += postHTML;
 
-// loop through matches
-// if element at current ticker is not found in array of objects, add it
-// other wise, go to it, and increase 'timesCounted'
-const countedTickers = [];
-// object structure {stock: 'TICKER_NAME_HERE', timesCounted: 1'}
+					// ticker regex/pattern
+					const regex = /\$\b[A-Z]{1,4}\b/g;
 
-// loop through
-tickers.forEach((ticker) => {
-	// if not found...
-	if (!countedTickers.filter((match) => match.stock === ticker).length) {
-		// add it to array
-		countedTickers.push({ stock: ticker, timesCounted: 1 });
-	} else {
-		// if duplicate, just increase timesCounted by 1
-		countedTickers.find((dupe) => dupe.stock === ticker).timesCounted += 1;
+					// extract all tickers matching the regex
+					const tickers = htmlToParse.match(regex).sort();
+
+					const countedTickers = [];
+					// object structure {stock: 'TICKER_NAME_HERE', timesCounted: 1'}
+
+					tickers.forEach((ticker) => {
+						// if not found...
+						if (!countedTickers.filter((match) => match.stock === ticker).length) {
+							// add it to array
+							countedTickers.push({ stock: ticker, timesCounted: 1 });
+						} else {
+							// if duplicate, just increase timesCounted by 1
+							countedTickers.find((dupe) => dupe.stock === ticker).timesCounted += 1;
+						}
+					});
+
+					// sort tickers by timesCounted (highest to lowest)
+					const sortedTickers = countedTickers.sort((tickerA, tickerB) =>
+						tickerA.timesCounted < tickerB.timesCounted ? 1 : -1
+					);
+
+					const topTenTickers = sortedTickers.splice(0, 15);
+					console.log(`Top 15 Mentioned Tickers from /r/${subreddit}: `, topTenTickers);
+				} catch (error) {
+					console.log(error);
+				}
+			}
+		};
+
+		// call the fn
+		getPostHtml();
+	} catch (error) {
+		console.log(error);
 	}
-});
+};
 
-console.log(countedTickers);
+/*
+	--- stock/investing/trading subreddits ---
+	stocks (US)
+	CanadianInvestor (CA)
+	investing (US)
+	wallstreetbets (US)
 
-// filter out tickers mentioned X # of times
-// const mostMentionedTickers = countedTickers.filter((x) => x.timesCounted > 1);
-// console.log(mostMentionedTickers);
+	pennystocks (US)
+	Canadapennystocks (CAN)
+*/
+scrapeReddit('CanadianInvestor');

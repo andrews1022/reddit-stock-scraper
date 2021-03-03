@@ -1,15 +1,16 @@
 # Reddit Stock Scraper
 
-- create function that takes in subreddit name
-- go to that subreddit, and go to https://old.reddit.com/r/SUBREDDIT_NAME_HERE/
-- go into each each post, scrape it, and count number of times each ticker is mentioned
-  - check post title, post description, comments
-- keep track in array of objects like this:
-  [
-  { stock: APL, timesCounted: 15},
-  { stock: GME, timesCounted: 20},
-  { stock: TSLA, timesCounted: 10},
-  ]
-- sort from most to least mentions, and grab top 10 (or another number, tbd later, maybe top 15-20)
-- display data in console
-- do own DD on each company after that
+This is a simple Node based Reddit scraper for finding which stocks are getting the most mentions. As of Mar 2, 2021, this project uses only the following packages:
+
+- Cheerio (for the scraping)
+- ESLint (to enforce code quality)
+- ESM (to allow the use of import instead of require)
+- Node-Fetch (for fetching the data)
+
+## Usage
+
+`npm install`
+
+In app.js, change the subreddit name inside the `scrapeReddit();` function call at the bottom to your liking
+
+Run `npm run scrape` to get your results!
