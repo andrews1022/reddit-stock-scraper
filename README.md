@@ -6,11 +6,14 @@ This is a simple Node based Reddit scraper for finding which stocks are getting 
 - ESLint (to enforce code quality)
 - ESM (to allow the use of import instead of require)
 - Node-Fetch (for fetching the data)
+- Prompt (to get user input for custom/dynamic results)
 
 ## Usage
 
+Make sure you have [Node.js](https://nodejs.org/en/) installed first.
+
 `npm install`
 
-In app.js, change the subreddit name inside the `scrapeReddit();` function call at the bottom to your liking
+`npm run scrape`
 
-Run `npm run scrape` to get your results!
+And that's it!
