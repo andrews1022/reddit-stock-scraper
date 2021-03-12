@@ -9,7 +9,9 @@ const getPostHtml = async (hrefArr) => {
 		try {
 			const postResponse = await fetch(`${BASE_URL}${href}`);
 			const postHTML = await postResponse.text();
+
 			htmlToParse += postHTML;
+
 			console.log('Loading HTML...');
 		} catch (error) {
 			if (error) console.log(ERROR_MESSAGE);

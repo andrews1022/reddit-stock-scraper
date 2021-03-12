@@ -6,29 +6,44 @@ const invalidTickers = [
 	'P',
 	'Q',
 	'S',
+	'X',
 	'AP',
 	'CA',
 	'DD',
 	'EV',
+	'GO',
 	'IE',
 	'IN',
 	'JC',
+	'MF',
 	'TO',
 	'UN',
 	'US',
 	'WS',
 	'BNN',
+	'CAD',
 	'CSE',
 	'DIY',
+	'DFV',
+	'DMV',
 	'ETF',
+	'IPO',
 	'IRL',
+	'LET',
 	'LIF',
 	'LOL',
 	'RIF',
 	'RSS',
+	'TSX',
 	'UTC',
+	'WSB',
 	'WTF',
 	'WTH',
+	'AQAA',
+	'APES',
+	'BACK',
+	'DRIP',
+	'FOMO',
 	'FUCK',
 	'HERE',
 	'HODL',
@@ -37,12 +52,15 @@ const invalidTickers = [
 	'LIRA',
 	'LMAO',
 	'NSFW',
+	'NYSE',
+	'OVER',
 	'REIT',
 	'RESP',
 	'RRSP',
 	'SHIT',
 	'TFSA',
-	'VOTE'
+	'VOTE',
+	'YOLO'
 ];
 
 export default invalidTickers;
@@ -76,7 +94,10 @@ export default invalidTickers;
 // Z - Zillow Group, Inc.
 
 // ----- COMMON TERMS THAT HAPPEN TO BE STOCKS (SEARCH ON YOUR OWN) -----
-// TICKER (MEANING) - STOCK
+// Format: TICKER - STOCK/ETF/etc.
 
-// DD (Due diligence) - DuPont de Nemours, Inc.
-// EV (Electric vehicle) - Eaton Vance Corp.
+// DD - DuPont de Nemours, Inc.
+// EV - Eaton Vance Corp.
+// GO - Grocery Outlet Holding Corp.
+// IPO - Renaissance IPO ETF
+// YOLO - AdvisorShares Pure Cannabis ETF
