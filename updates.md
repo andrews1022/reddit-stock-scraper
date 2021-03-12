@@ -1,5 +1,10 @@
 # Update Log
 
+## Update #3 - March 11, 2021
+
+- Just added a few more invalid tickers
+- Tried a different approach for fetching/parsing text from each post, but found there was little to no difference in performance, and less results were retrieved
+
 ## Update #2 - March 3, 2021
 
 - Created separate api file + folder to house api endpoint
