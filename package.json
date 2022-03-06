@@ -1,31 +1,31 @@
 {
-	"name": "reddit-stock-scraper",
-	"version": "1.0.0",
-	"description": "- Store list of finance/stock subreddits in an array\r - For each subreddit",
-	"main": "app.js",
-	"scripts": {
-		"scrape": "node -r esm app.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/andrews1022/reddit-stock-scraper.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/andrews1022/reddit-stock-scraper/issues"
-	},
-	"homepage": "https://github.com/andrews1022/reddit-stock-scraper#readme",
-	"devDependencies": {
-		"eslint": "^7.21.0",
-		"eslint-config-airbnb-base": "^14.2.1",
-		"eslint-plugin-import": "^2.22.1"
-	},
-	"dependencies": {
-		"cheerio": "^1.0.0-rc.5",
-		"esm": "^3.2.25",
-		"node-fetch": "^2.6.1",
-		"prompt": "^1.1.0"
-	}
+  "name": "reddit-stock-scraper",
+  "version": "1.0.0",
+  "description": "- Store list of finance/stock subreddits in an array\r - For each subreddit",
+  "main": "app.js",
+  "scripts": {
+    "scrape": "node -r esm app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrews1022/reddit-stock-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrews1022/reddit-stock-scraper/issues"
+  },
+  "homepage": "https://github.com/andrews1022/reddit-stock-scraper#readme",
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "esm": "^3.2.25",
+    "node-fetch": "^2.6.1",
+    "prompt": "^1.1.0"
+  }
 }
