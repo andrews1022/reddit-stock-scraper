@@ -1,9 +1,9 @@
-import fetch from 'node-fetch';
-import BASE_URL from '../api/api';
-import ERROR_MESSAGE from '../data/errorMessage';
+import fetch from "node-fetch";
+import BASE_URL from "../api/api";
+import ERROR_MESSAGE from "../data/errorMessage";
 
 const getPostHtml = async (hrefArr) => {
-  let htmlToParse = '';
+  let htmlToParse = "";
 
   for (const href of hrefArr) {
     try {
@@ -12,7 +12,7 @@ const getPostHtml = async (hrefArr) => {
 
       htmlToParse += postHTML;
 
-      console.log('Loading HTML...');
+      console.log("Loading HTML...");
     } catch (error) {
       if (error) console.log(ERROR_MESSAGE);
     }

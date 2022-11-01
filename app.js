@@ -1,24 +1,24 @@
 // packages
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-import prompt from 'prompt';
+import cheerio from "cheerio";
+import fetch from "node-fetch";
+import prompt from "prompt";
 
 // api
-import BASE_URL from './api/api';
+import BASE_URL from "./api/api";
 
 // data
-import ERROR_MESSAGE from './data/errorMessage';
-import invalidTickers from './data/invalidTickers';
+import ERROR_MESSAGE from "./data/errorMessage";
+import invalidTickers from "./data/invalidTickers";
 
 // functions
-import getPostHtml from './functions/getPostHtml';
+import getPostHtml from "./functions/getPostHtml";
 
 const scrapeReddit = async () => {
   // start user prompt/input
   prompt.start();
 
   // get userInput
-  const { subreddit, numberOfResults } = await prompt.get(['subreddit', 'numberOfResults']);
+  const { subreddit, numberOfResults } = await prompt.get(["subreddit", "numberOfResults"]);
 
   try {
     // fetch subreddit page html
@@ -30,8 +30,8 @@ const scrapeReddit = async () => {
 
     // grab all hrefs
     const hrefs = [];
-    $('.thing .entry .top-matter .title a.title').each((i, el) => {
-      hrefs[i] = $(el).attr('href');
+    $(".thing .entry .top-matter .title a.title").each((i, el) => {
+      hrefs[i] = $(el).attr("href");
     });
 
     // filter the hrefs - only get hrefs that include the subreddit name (avoids links for ads)
@@ -48,7 +48,7 @@ const scrapeReddit = async () => {
     const tickers = parsedHtml
       .match(regex)
       .sort()
-      .map((ticker) => ticker.replace('$', ''))
+      .map((ticker) => ticker.replace("$", ""))
       .filter((ticker) => invalidTickers.indexOf(ticker) < 0);
 
     // object structure {stock: 'TICKER_NAME_HERE', timesCounted: 1'}
