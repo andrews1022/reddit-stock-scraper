@@ -51,7 +51,7 @@ const scrapeReddit = async () => {
       .map((ticker) => ticker.replace("$", ""))
       .filter((ticker) => invalidTickers.indexOf(ticker) < 0);
 
-    // object structure {stock: 'TICKER_NAME_HERE', timesCounted: 1'}
+    // object structure {stock: "TICKER_NAME_HERE", timesCounted: 1 }
     const countedTickers = [];
 
     tickers.forEach((ticker) => {
